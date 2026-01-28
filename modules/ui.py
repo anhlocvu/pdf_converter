@@ -50,6 +50,46 @@ class ConversionProgressDialog(wx.Dialog):
     def append_log(self, msg):
         wx.CallAfter(self.log_text.AppendText, msg + "\n")
 
+class ConvertOptionsDialog(wx.Dialog):
+    def __init__(self, parent):
+        super().__init__(parent, title="Conversion Options", size=(350, 200))
+        self.SetBackgroundColour(COLOR_BG)
+        self.SetForegroundColour(COLOR_FG)
+        
+        panel = wx.Panel(self)
+        panel.SetBackgroundColour(COLOR_BG)
+        panel.SetForegroundColour(COLOR_FG)
+        
+        vbox = wx.BoxSizer(wx.VERTICAL)
+        
+        # Label
+        lbl = wx.StaticText(panel, label="Select Output Format:")
+        lbl.SetForegroundColour(COLOR_FG)
+        vbox.Add(lbl, 0, wx.ALL, 15)
+        
+        # Combo
+        self.combo_format = wx.ComboBox(panel, choices=["TXT", "HTML", "DOCX"], style=wx.CB_READONLY)
+        self.combo_format.SetSelection(0)
+        vbox.Add(self.combo_format, 0, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 15)
+        
+        # Buttons
+        hbox = wx.BoxSizer(wx.HORIZONTAL)
+        btn_convert = wx.Button(panel, wx.ID_OK, label="Convert")
+        btn_cancel = wx.Button(panel, wx.ID_CANCEL, label="Cancel")
+        
+        btn_convert.SetDefault()
+        
+        hbox.Add(btn_convert, 1, wx.RIGHT, 10)
+        hbox.Add(btn_cancel, 1)
+        
+        vbox.Add(hbox, 0, wx.EXPAND | wx.ALL, 15)
+        
+        panel.SetSizer(vbox)
+        self.CenterOnParent()
+
+    def get_format(self):
+        return self.combo_format.GetValue().lower()
+
 class MainFrame(wx.Frame):
     def __init__(self):
         super().__init__(None, title=APP_TITLE, size=(900, 700))
@@ -65,45 +105,36 @@ class MainFrame(wx.Frame):
         self.Show()
 
     def init_ui(self):
-        main_sizer = wx.BoxSizer(wx.VERTICAL)
+        self.main_sizer = wx.BoxSizer(wx.VERTICAL)
         
-        # --- Top Bar ---
-        top_panel = DarkPanel(self)
-        top_sizer = wx.BoxSizer(wx.HORIZONTAL)
+        # --- Menu Bar ---
+        menubar = wx.MenuBar()
         
-        self.path_text = wx.TextCtrl(top_panel, style=wx.TE_READONLY)
-        self.path_text.SetBackgroundColour(COLOR_PANEL)
-        self.path_text.SetForegroundColour(COLOR_FG)
+        # File Menu
+        file_menu = wx.Menu()
+        m_open = file_menu.Append(wx.ID_OPEN, "&Open PDF\tCtrl+O", "Open a PDF file for reading")
+        file_menu.AppendSeparator()
+        m_exit = file_menu.Append(wx.ID_EXIT, "E&xit\tAlt+F4", "Exit the application")
         
-        btn_select = wx.Button(top_panel, label="Select PDF")
-        btn_select.Bind(wx.EVT_BUTTON, self.on_select_file)
+        # Tools Menu
+        tools_menu = wx.Menu()
+        m_convert = tools_menu.Append(wx.ID_ANY, "&Convert Options...\tAlt+C", "Open conversion options")
         
-        # Format Combo
-        lbl_fmt = wx.StaticText(top_panel, label="Format:")
-        lbl_fmt.SetForegroundColour(COLOR_FG)
+        menubar.Append(file_menu, "&File")
+        menubar.Append(tools_menu, "&Tools")
+        self.SetMenuBar(menubar)
         
-        self.combo_format = wx.ComboBox(top_panel, choices=["TXT", "HTML", "DOCX"], style=wx.CB_READONLY)
-        self.combo_format.SetSelection(0) # Default to TXT
-        
-        self.btn_convert = wx.Button(top_panel, label="Convert")
-        self.btn_convert.Bind(wx.EVT_BUTTON, self.on_convert_click)
-        self.btn_convert.Disable()
-        
-        top_sizer.Add(self.path_text, 1, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 10)
-        top_sizer.Add(btn_select, 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 10)
-        top_sizer.Add(lbl_fmt, 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 5)
-        top_sizer.Add(self.combo_format, 0, wx.ALIGN_CENTER_VERTICAL | wx.RIGHT, 10)
-        top_sizer.Add(self.btn_convert, 0, wx.ALIGN_CENTER_VERTICAL)
-        
-        top_panel.SetSizer(top_sizer)
-        
-        # --- Preview Area ---
-        self.scroll_window = wx.ScrolledWindow(self, style=wx.VSCROLL)
-        self.scroll_window.SetScrollRate(20, 20)
-        self.scroll_window.SetBackgroundColour(COLOR_PANEL)
-        
-        self.preview_sizer = wx.BoxSizer(wx.VERTICAL)
-        self.scroll_window.SetSizer(self.preview_sizer)
+        # Bind Events
+        self.Bind(wx.EVT_MENU, self.on_select_file, m_open)
+        self.Bind(wx.EVT_MENU, self.on_exit, m_exit)
+        self.Bind(wx.EVT_MENU, self.on_convert_options, m_convert)
+
+        # --- Preview Area (Accessible Text Box) ---
+        self.preview_text = wx.TextCtrl(self, style=wx.TE_MULTILINE | wx.TE_READONLY | wx.TE_RICH2)
+        self.preview_text.SetBackgroundColour(COLOR_PANEL)
+        self.preview_text.SetForegroundColour(COLOR_FG)
+        self.preview_text.SetFont(wx.Font(11, wx.FONTFAMILY_MODERN, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
+        self.preview_text.SetValue("Welcome. Press Ctrl+O to open a PDF file.")
         
         # --- Status Bar ---
         self.status_bar = self.CreateStatusBar()
@@ -112,10 +143,12 @@ class MainFrame(wx.Frame):
         self.status_bar.SetStatusText("Ready")
 
         # Layout
-        main_sizer.Add(top_panel, 0, wx.EXPAND | wx.ALL, 10)
-        main_sizer.Add(self.scroll_window, 1, wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)
+        self.main_sizer.Add(self.preview_text, 1, wx.EXPAND | wx.ALL, 10)
         
-        self.SetSizer(main_sizer)
+        self.SetSizer(self.main_sizer)
+
+    def on_exit(self, event):
+        self.Close()
 
     def on_select_file(self, event):
         with wx.FileDialog(self, "Open PDF", wildcard="PDF files (*.pdf)|*.pdf",
@@ -125,58 +158,42 @@ class MainFrame(wx.Frame):
             
             path = dlg.GetPath()
             self.selected_file = path
-            self.path_text.SetValue(path)
             self.load_preview(path)
-            self.btn_convert.Enable()
+            self.status_bar.SetStatusText(f"Loaded. Use Alt+C to convert.")
+            self.preview_text.SetFocus() 
 
     def load_preview(self, path):
-        # Clear previous preview
-        self.preview_sizer.Clear(True)
-        self.status_bar.SetStatusText("Loading preview...")
-        self.scroll_window.Refresh()
-        self.Update() # Force UI update
-        
-        loading_text = wx.StaticText(self.scroll_window, label="Loading PDF Preview...")
-        loading_text.SetForegroundColour(COLOR_FG)
-        self.preview_sizer.Add(loading_text, 0, wx.ALIGN_CENTER|wx.ALL, 20)
-        self.scroll_window.Layout()
+        self.status_bar.SetStatusText("Loading text preview...")
+        self.preview_text.SetValue("Loading document... Please wait.")
+        self.Update()
         
         try:
             if self.viewer:
                 self.viewer.close()
             
             self.viewer = PDFViewer(path)
+            text = self.viewer.get_text()
             
-            self.preview_sizer.Clear(True)
-            
-            # Limit preview to first 5 pages for performance
-            pages_to_show = min(self.viewer.page_count, 5)
-            
-            width = self.scroll_window.GetClientSize().width - 30 
-            if width < 100: width = 600
-            
-            for i in range(pages_to_show):
-                bmp = self.viewer.get_page_bitmap(i, width=width)
-                if bmp:
-                    sb = wx.StaticBitmap(self.scroll_window, bitmap=bmp)
-                    self.preview_sizer.Add(sb, 0, wx.ALIGN_CENTER | wx.BOTTOM, 10)
-            
-            if self.viewer.page_count > 5:
-                lbl = wx.StaticText(self.scroll_window, label=f"... {self.viewer.page_count - 5} more pages ...")
-                lbl.SetForegroundColour(COLOR_FG)
-                self.preview_sizer.Add(lbl, 0, wx.ALIGN_CENTER | wx.ALL, 10)
-
-            self.scroll_window.SetVirtualSize(self.preview_sizer.GetMinSize())
-            self.scroll_window.Layout()
-            self.status_bar.SetStatusText(f"Loaded {path}")
+            self.preview_text.SetValue(text)
+            self.status_bar.SetStatusText("Preview loaded.")
             
         except Exception as e:
             self.status_bar.SetStatusText("Error loading preview")
+            self.preview_text.SetValue(f"Error reading PDF text: {str(e)}")
             wx.MessageBox(f"Failed to load PDF preview: {e}", "Error", wx.ICON_ERROR)
 
-    def on_convert_click(self, event):
-        fmt = self.combo_format.GetValue().lower()
-        self.start_conversion(fmt)
+    def on_convert_options(self, event):
+        if not self.selected_file:
+            wx.MessageBox("Please open a PDF file first (Ctrl+O).", "No File Selected", wx.ICON_WARNING)
+            return
+            
+        dlg = ConvertOptionsDialog(self)
+        if dlg.ShowModal() == wx.ID_OK:
+            fmt = dlg.get_format()
+            dlg.Destroy()
+            self.start_conversion(fmt)
+        else:
+            dlg.Destroy()
 
     def start_conversion(self, fmt):
         # Hide Main Window
@@ -214,16 +231,13 @@ class MainFrame(wx.Frame):
     def on_conversion_complete(self, output_path):
         if self.progress_dialog:
             self.progress_dialog.append_log("Conversion Finished!")
-            # Small delay or just close? User logic implied dialog just shows status.
-            # But normally we might want to see the "Finished" log. 
-            # However, user said "then it has a dialog box notification then it shows the main interface only".
-            # So I will close the progress dialog and show the MessageBox.
             self.progress_dialog.Destroy()
             self.progress_dialog = None
             
         wx.MessageBox(f"Saved successfully to:\n{output_path}", "Success", wx.ICON_INFORMATION)
         self.Show()
         self.status_bar.SetStatusText("Ready")
+        self.preview_text.SetFocus()
 
     def on_conversion_error(self, err_msg):
         if self.progress_dialog:

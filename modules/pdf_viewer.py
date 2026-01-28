@@ -29,6 +29,13 @@ class PDFViewer:
         bitmap = wx.Bitmap(image)
         return bitmap
 
+    def get_text(self):
+        # Extract text from all pages for accessibility preview
+        full_text = ""
+        for page in self.doc:
+            full_text += page.get_text() + "\n\n"
+        return full_text
+
     def close(self):
         if self.doc:
             self.doc.close()
