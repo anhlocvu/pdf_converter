@@ -83,7 +83,7 @@ class SettingsDialog(wx.Dialog):
 
 class ConversionProgressDialog(wx.Dialog):
     def __init__(self, parent):
-        super().__init__(parent, title="Converting...", size=(400, 300), style=wx.CAPTION)
+        super().__init__(parent, title=_("Converting..."), size=(400, 300), style=wx.CAPTION)
         self.SetBackgroundColour(COLOR_BG)
         self.SetForegroundColour(COLOR_FG)
         
@@ -94,7 +94,7 @@ class ConversionProgressDialog(wx.Dialog):
         vbox = wx.BoxSizer(wx.VERTICAL)
         
         # Title
-        lbl = wx.StaticText(panel, label="Conversion in Progress")
+        lbl = wx.StaticText(panel, label=_("Conversion in Progress"))
         lbl.SetFont(wx.Font(12, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_BOLD))
         lbl.SetForegroundColour(COLOR_FG)
         vbox.Add(lbl, 0, wx.ALL | wx.ALIGN_CENTER, 15)
@@ -113,7 +113,7 @@ class ConversionProgressDialog(wx.Dialog):
 
 class ConvertOptionsDialog(wx.Dialog):
     def __init__(self, parent, default_path):
-        super().__init__(parent, title="Conversion Options", size=(450, 300))
+        super().__init__(parent, title=_("Conversion Options"), size=(450, 300))
         self.SetBackgroundColour(COLOR_BG)
         self.SetForegroundColour(COLOR_FG)
         
@@ -124,7 +124,7 @@ class ConvertOptionsDialog(wx.Dialog):
         vbox = wx.BoxSizer(wx.VERTICAL)
         
         # --- Format Section ---
-        lbl_fmt = wx.StaticText(panel, label="Select Output Format:")
+        lbl_fmt = wx.StaticText(panel, label=_("Select Output Format:"))
         lbl_fmt.SetForegroundColour(COLOR_FG)
         vbox.Add(lbl_fmt, 0, wx.LEFT | wx.RIGHT | wx.TOP, 15)
         
@@ -133,7 +133,7 @@ class ConvertOptionsDialog(wx.Dialog):
         vbox.Add(self.combo_format, 0, wx.EXPAND | wx.LEFT | wx.RIGHT, 15)
         
         # --- Output Path Section ---
-        lbl_path = wx.StaticText(panel, label="Output Folder:")
+        lbl_path = wx.StaticText(panel, label=_("Output Folder:"))
         lbl_path.SetForegroundColour(COLOR_FG)
         vbox.Add(lbl_path, 0, wx.LEFT | wx.RIGHT | wx.TOP, 15)
         
@@ -142,7 +142,7 @@ class ConvertOptionsDialog(wx.Dialog):
         self.txt_path.SetBackgroundColour(COLOR_PANEL)
         self.txt_path.SetForegroundColour(COLOR_FG)
         
-        btn_browse = wx.Button(panel, label="Browse...")
+        btn_browse = wx.Button(panel, label=_("Browse..."))
         btn_browse.Bind(wx.EVT_BUTTON, self.on_browse)
         
         hbox_path.Add(self.txt_path, 1, wx.RIGHT, 5)
@@ -153,7 +153,7 @@ class ConvertOptionsDialog(wx.Dialog):
         # --- Buttons ---
         vbox.AddStretchSpacer(1)
         hbox_btns = wx.BoxSizer(wx.HORIZONTAL)
-        btn_convert = wx.Button(panel, wx.ID_OK, label="Convert")
+        btn_convert = wx.Button(panel, wx.ID_OK, label=_("Convert"))
         btn_cancel = wx.Button(panel, wx.ID_CANCEL, label="Cancel")
         
         btn_convert.SetDefault()
@@ -379,9 +379,9 @@ class MainFrame(wx.Frame):
         # Show Progress Dialog
         self.progress_dialog = ConversionProgressDialog(self)
         self.progress_dialog.Show()
-        self.progress_dialog.append_log(f"Starting conversion of {os.path.basename(self.selected_file)}...")
-        self.progress_dialog.append_log(f"Target format: {fmt.upper()}")
-        self.progress_dialog.append_log(f"Output folder: {output_dir}")
+        self.progress_dialog.append_log(f"{_('Starting conversion of ')} {os.path.basename(self.selected_file)}...")
+        self.progress_dialog.append_log(f"{_('Target format: ')} {fmt.upper()}")
+        self.progress_dialog.append_log(f"{_('Output folder: ')} {output_dir}")
         
         # Start Thread
         thread = threading.Thread(target=self.run_conversion_thread, args=(fmt, output_dir))
@@ -394,7 +394,7 @@ class MainFrame(wx.Frame):
             output_path = os.path.join(output_dir, f"{name_no_ext}.{fmt}")
             
             if self.progress_dialog:
-                self.progress_dialog.append_log("Processing file...")
+                self.progress_dialog.append_log(_("Processing file..."))
             
             if fmt == "txt":
                 self.logic.convert_to_txt(self.selected_file, output_path)
@@ -413,7 +413,7 @@ class MainFrame(wx.Frame):
             self.progress_dialog.Destroy()
             self.progress_dialog = None
             
-        wx.MessageBox(f"Saved successfully to:\n{output_path}", "Success", wx.ICON_INFORMATION)
+        wx.MessageBox(f"{_('Saved successfully to:')}\n{output_path}", _("Success"), wx.ICON_INFORMATION)
         self.Show()
         self.status_bar.SetStatusText("Ready")
         self.preview_text.SetFocus()
