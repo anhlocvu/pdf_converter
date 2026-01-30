@@ -8,18 +8,28 @@ def extract_strings(scan_dir):
     """Simple regex based extractor for _('...') and _("...") strings."""
     # Matches _("text") or _('text')
     pattern = re.compile(r'_\s*\((?P<quote>["\'])(?P<string>.*?)(?P=quote)\)')
-    strings = set()
+    str_list = set()
+    
+    # Dirs to exclude
+    exclude_dirs = {'.git', '.venv', 'venv', 'env', '__pycache__', 'build', 'dist', 'locales', '.idea', '.vscode'}
     
     for root, dirs, files in os.walk(scan_dir):
+        # Modify dirs in-place to skip excluded ones
+        dirs[:] = [d for d in dirs if d not in exclude_dirs]
+        
         for file in files:
             if file.endswith(".py") and file != "tools_i18n.py":
                 path = os.path.join(root, file)
-                with open(path, 'r', encoding='utf-8') as f:
-                    content = f.read()
-                    matches = pattern.findall(content)
-                    for _, s in matches:
-                        strings.add(s)
-    return sorted(list(strings))
+                try:
+                    with open(path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                        matches = pattern.findall(content)
+                        for _, s in matches:
+                            str_list.add(s)
+                except Exception as e:
+                    print(f"Skipping {path}: {e}")
+                    
+    return sorted(list(str_list))
 
 def write_pot(strings, output_file):
     with open(output_file, 'w', encoding='utf-8') as f:

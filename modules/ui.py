@@ -180,7 +180,7 @@ class ConvertOptionsDialog(wx.Dialog):
 
 class AboutDialog(wx.Dialog):
     def __init__(self, parent):
-        super().__init__(parent, title="About", size=(400, 350))
+        super().__init__(parent, title=_("About"), size=(400, 350))
         self.SetBackgroundColour(COLOR_BG)
         self.SetForegroundColour(COLOR_FG)
         
@@ -209,7 +209,7 @@ class AboutDialog(wx.Dialog):
         vbox.Add(txt_info, 1, wx.EXPAND | wx.ALL, 15)
         
         # Close Button
-        btn_close = wx.Button(panel, wx.ID_CANCEL, label="Close")
+        btn_close = wx.Button(panel, wx.ID_CANCEL, label=_("Close"))
         vbox.Add(btn_close, 0, wx.ALIGN_CENTER | wx.BOTTOM, 15)
         
         panel.SetSizer(vbox)
