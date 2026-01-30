@@ -1,0 +1,184 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "&About...\tF1"
+msgstr "&Giới thiệu...\tF1"
+
+msgid "&Convert Options...\tAlt+C"
+msgstr "&Tùy chọn Chuyển đổi...\tAlt+C"
+
+msgid "&File"
+msgstr "&Tệp"
+
+msgid "&Help"
+msgstr "&Trợ giúp"
+
+msgid "&Open PDF\tCtrl+O"
+msgstr "&Mở PDF\tCtrl+O"
+
+msgid "&Settings...\tF4"
+msgstr "&Cài đặt...\tF4"
+
+msgid "&Tools"
+msgstr "&Công cụ"
+
+msgid "PDF Converter, version: {}"
+msgstr "Trình chuyển đổi PDF, phiên bản: {}"
+
+msgid "About"
+msgstr "Giới thiệu"
+
+msgid "About this application"
+msgstr "Giới thiệu về ứng dụng này"
+
+msgid "Browse..."
+msgstr "Duyệt..."
+
+msgid "Cancel"
+msgstr "Hủy"
+
+msgid "Close"
+msgstr "Đóng"
+
+msgid "Close PDF\tCtrl+F4"
+msgstr "Đóng PDF\tCtrl+F4"
+
+msgid "Close the current PDF"
+msgstr "Đóng PDF hiện tại"
+
+msgid "Conversion Error:"
+msgstr "Lỗi chuyển đổi:"
+
+msgid "Conversion Finished!"
+msgstr "Chuyển đổi hoàn tất!"
+
+msgid "Conversion Options"
+msgstr "Tùy chọn chuyển đổi"
+
+msgid "Conversion in Progress"
+msgstr "Đang chuyển đổi"
+
+msgid "Convert"
+msgstr "Chuyển đổi"
+
+msgid "Converting..."
+msgstr "Đang chuyển đổi..."
+
+msgid "Developer: Technology Entertainment Studio."
+msgstr "Nhà phát triển: Technology Entertainment Studio."
+
+msgid "E&xit\tAlt+F4"
+msgstr "Th&oát\tAlt+F4"
+
+msgid "Error"
+msgstr "Lỗi"
+
+msgid "Error loading preview"
+msgstr "Lỗi tải xem trước"
+
+msgid "Error reading PDF text"
+msgstr "Lỗi đọc văn bản PDF"
+
+msgid "Exit the application"
+msgstr "Thoát ứng dụng"
+
+msgid "General"
+msgstr "Chung"
+
+msgid "Language:"
+msgstr "Ngôn ngữ:"
+
+msgid "Loaded. Use Alt+C to convert."
+msgstr "Đã tải. Dùng Alt+C để chuyển đổi."
+
+msgid "Loading document... Please wait."
+msgstr "Đang tải tài liệu... Vui lòng đợi."
+
+msgid "Loading text preview..."
+msgstr "Đang tải xem trước..."
+
+msgid "Open a PDF file for reading"
+msgstr "Mở tệp PDF để đọc"
+
+msgid "Open application settings"
+msgstr "Mở cài đặt ứng dụng"
+
+msgid "Open conversion options"
+msgstr "Mở tùy chọn chuyển đổi"
+
+msgid "Or you need to convert a PDF file to various formats?\n\n"
+msgstr "Hay bạn cần chuyển đổi tệp PDF sang nhiều định dạng?\n\n"
+
+msgid "Output Folder:"
+msgstr "Thư mục đầu ra:"
+
+msgid "Output folder:"
+msgstr "Thư mục đầu ra:"
+
+msgid "PDF Closed."
+msgstr "Đã đóng PDF."
+
+msgid "PDF Converter is a versatile software that helps users view and extract text easily.\n\n"
+msgstr "PDF Converter là phần mềm đa năng giúp xem và trích xuất văn bản dễ dàng.\n\n"
+
+msgid "Please open a PDF file first (Ctrl+O)."
+msgstr "Vui lòng mở tệp PDF trước (Ctrl+O)."
+
+msgid "Please restart the application to apply language changes."
+msgstr "Vui lòng khởi động lại ứng dụng để áp dụng ngôn ngữ mới."
+
+msgid "Preview loaded."
+msgstr "Đã tải xem trước."
+
+msgid "Processing file..."
+msgstr "Đang xử lý tệp..."
+
+msgid "Ready - Please select a PDF file."
+msgstr "Sẵn sàng - Vui lòng chọn tệp PDF."
+
+msgid "Restart Required"
+msgstr "Cần khởi động lại"
+
+msgid "Save"
+msgstr "Lưu"
+
+msgid "Saved successfully to:"
+msgstr "Lưu thành công tại:"
+
+msgid "Select Output Directory"
+msgstr "Chọn thư mục đầu ra"
+
+msgid "Select Output Format:"
+msgstr "Chọn định dạng:"
+
+msgid "Select PDF"
+msgstr "Chọn PDF"
+
+msgid "Settings"
+msgstr "Cài đặt"
+
+msgid "Starting conversion of"
+msgstr "Bắt đầu chuyển đổi"
+
+msgid "Success"
+msgstr "Thành công"
+
+msgid "Target format:"
+msgstr "Định dạng mục tiêu:"
+
+msgid "There is only PDF Converter.\n"
+msgstr "Chỉ có PDF Converter.\n"
+
+msgid "Version and Development Info:\n\n"
+msgstr "Thông tin phiên bản và phát triển:\n\n"
+
+msgid "Version, "
+msgstr "Phiên bản, "
+
+msgid "Welcome. Press Ctrl+O to open a PDF file."
+msgstr "Chào mừng. Nhấn Ctrl+O để mở tệp PDF."
+
+msgid "You want to read a PDF file, but you don't have Word?\n"
+msgstr "Bạn muốn đọc file PDF nhưng không có Word?\n"

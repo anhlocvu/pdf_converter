@@ -20,7 +20,7 @@ msgstr ""
 msgid "&Open PDF\tCtrl+O"
 msgstr ""
 
-msgid "&Options...\tF4"
+msgid "&Settings...\tF4"
 msgstr ""
 
 msgid "&Tools"
@@ -77,7 +77,7 @@ msgstr ""
 msgid "Open a PDF file for reading"
 msgstr ""
 
-msgid "Open application options"
+msgid "Open application settings"
 msgstr ""
 
 msgid "Open conversion options"

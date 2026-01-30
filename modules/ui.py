@@ -249,7 +249,7 @@ class MainFrame(wx.Frame):
         self.m_convert = tools_menu.Append(wx.ID_ANY, _("&Convert Options...\tAlt+C"), _("Open conversion options"))
         self.m_convert.Enable(False)
         tools_menu.AppendSeparator()
-        self.m_options = tools_menu.Append(wx.ID_ANY, _("&Options...\tF4"), _("Open application options"))
+        self.m_options = tools_menu.Append(wx.ID_ANY, _("&Settings...\tF4"), _("Open application settings"))
         
         # Help Menu
         help_menu = wx.Menu()
