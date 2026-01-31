@@ -32,9 +32,6 @@ msgstr "&Cài đặt...\tF4"
 msgid "&Tools"
 msgstr "&Công cụ"
 
-msgid "PDF Converter, version: {}"
-msgstr "Trình chuyển đổi PDF, phiên bản: {}"
-
 msgid "About"
 msgstr "Giới thiệu"
 
@@ -56,12 +53,6 @@ msgstr "Đóng PDF\tCtrl+F4"
 msgid "Close the current PDF"
 msgstr "Đóng PDF hiện tại"
 
-msgid "Conversion Error:"
-msgstr "Lỗi chuyển đổi:"
-
-msgid "Conversion Finished!"
-msgstr "Chuyển đổi hoàn tất!"
-
 msgid "Conversion Options"
 msgstr "Tùy chọn chuyển đổi"
 
@@ -80,15 +71,6 @@ msgstr "Nhà phát triển: Technology Entertainment Studio."
 msgid "E&xit\tAlt+F4"
 msgstr "Th&oát\tAlt+F4"
 
-msgid "Error"
-msgstr "Lỗi"
-
-msgid "Error loading preview"
-msgstr "Lỗi tải xem trước"
-
-msgid "Error reading PDF text"
-msgstr "Lỗi đọc văn bản PDF"
-
 msgid "Exit the application"
 msgstr "Thoát ứng dụng"
 
@@ -97,15 +79,6 @@ msgstr "Chung"
 
 msgid "Language:"
 msgstr "Ngôn ngữ:"
-
-msgid "Loaded. Use Alt+C to convert."
-msgstr "Đã tải. Dùng Alt+C để chuyển đổi."
-
-msgid "Loading document... Please wait."
-msgstr "Đang tải tài liệu... Vui lòng đợi."
-
-msgid "Loading text preview..."
-msgstr "Đang tải văn bản xem trước..."
 
 msgid "Open a PDF file for reading"
 msgstr "Mở tệp PDF để đọc"
@@ -126,27 +99,30 @@ msgstr ""
 msgid "Output Folder:"
 msgstr "Thư mục đầu ra:"
 
-msgid "Output folder:"
+#, fuzzy
+#| msgid "Output folder:"
+msgid "Output folder: "
 msgstr "Thư mục đầu ra:"
 
-msgid "PDF Closed."
-msgstr "Đã đóng PDF."
-
 msgid ""
-"PDF Converter is a versatile software that helps users view and extract text easily.\n"
+"PDF Converter is a versatile software that helps users view and extract text "
+"easily.\n"
 "\n"
 msgstr ""
-"PDF Converter là phần mềm đa năng giúp người dùng xem và trích xuất văn bản dễ dàng.\n"
+"PDF Converter là phần mềm đa năng giúp người dùng xem và trích xuất văn bản "
+"dễ dàng.\n"
 "\n"
 
-msgid "Please open a PDF file first (Ctrl+O)."
-msgstr "Vui lòng mở tệp PDF trước (Ctrl+O)."
+#, fuzzy
+#| msgid "PDF Converter, version: {}"
+msgid "PDF Converter, version: "
+msgstr "Trình chuyển đổi PDF, phiên bản: {}"
+
+msgid "PDF Converter, version: {}"
+msgstr "Trình chuyển đổi PDF, phiên bản: {}"
 
 msgid "Please restart the application to apply language changes."
 msgstr "Vui lòng khởi động lại ứng dụng để áp dụng ngôn ngữ mới."
-
-msgid "Preview loaded."
-msgstr "Đã tải xem trước."
 
 msgid "Processing file..."
 msgstr "Đang xử lý tệp..."
@@ -163,25 +139,23 @@ msgstr "Lưu"
 msgid "Saved successfully to:"
 msgstr "Đã lưu thành công tại:"
 
-msgid "Select Output Directory"
-msgstr "Chọn thư mục đầu ra"
-
 msgid "Select Output Format:"
 msgstr "Chọn định dạng đầu ra:"
-
-msgid "Select PDF"
-msgstr "Chọn PDF"
 
 msgid "Settings"
 msgstr "Cài đặt"
 
-msgid "Starting conversion of"
+#, fuzzy
+#| msgid "Starting conversion of"
+msgid "Starting conversion of "
 msgstr "Đang bắt đầu chuyển đổi"
 
 msgid "Success"
 msgstr "Thành công"
 
-msgid "Target format:"
+#, fuzzy
+#| msgid "Target format:"
+msgid "Target format: "
 msgstr "Định dạng đầu ra:"
 
 msgid "There is only PDF Converter.\n"
@@ -202,3 +176,42 @@ msgstr "Chào mừng. Nhấn Ctrl+O để mở tệp PDF."
 
 msgid "You want to read a PDF file, but you don't have Word?\n"
 msgstr "Bạn muốn đọc file PDF nhưng không có Word?\n"
+
+#~ msgid "Conversion Error:"
+#~ msgstr "Lỗi chuyển đổi:"
+
+#~ msgid "Conversion Finished!"
+#~ msgstr "Chuyển đổi hoàn tất!"
+
+#~ msgid "Error"
+#~ msgstr "Lỗi"
+
+#~ msgid "Error loading preview"
+#~ msgstr "Lỗi tải xem trước"
+
+#~ msgid "Error reading PDF text"
+#~ msgstr "Lỗi đọc văn bản PDF"
+
+#~ msgid "Loaded. Use Alt+C to convert."
+#~ msgstr "Đã tải. Dùng Alt+C để chuyển đổi."
+
+#~ msgid "Loading document... Please wait."
+#~ msgstr "Đang tải tài liệu... Vui lòng đợi."
+
+#~ msgid "Loading text preview..."
+#~ msgstr "Đang tải văn bản xem trước..."
+
+#~ msgid "PDF Closed."
+#~ msgstr "Đã đóng PDF."
+
+#~ msgid "Please open a PDF file first (Ctrl+O)."
+#~ msgstr "Vui lòng mở tệp PDF trước (Ctrl+O)."
+
+#~ msgid "Preview loaded."
+#~ msgstr "Đã tải xem trước."
+
+#~ msgid "Select Output Directory"
+#~ msgstr "Chọn thư mục đầu ra"
+
+#~ msgid "Select PDF"
+#~ msgstr "Chọn PDF"
