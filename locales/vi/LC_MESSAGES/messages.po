@@ -99,10 +99,8 @@ msgstr ""
 msgid "Output Folder:"
 msgstr "Thư mục đầu ra:"
 
-#, fuzzy
-#| msgid "Output folder:"
 msgid "Output folder: "
-msgstr "Thư mục đầu ra:"
+msgstr "Thư mục đầu ra: "
 
 msgid ""
 "PDF Converter is a versatile software that helps users view and extract text "
@@ -113,8 +111,6 @@ msgstr ""
 "dễ dàng.\n"
 "\n"
 
-#, fuzzy
-#| msgid "PDF Converter, version: {}"
 msgid "PDF Converter, version: "
 msgstr "Trình chuyển đổi PDF, phiên bản: {}"
 
@@ -145,18 +141,14 @@ msgstr "Chọn định dạng đầu ra:"
 msgid "Settings"
 msgstr "Cài đặt"
 
-#, fuzzy
-#| msgid "Starting conversion of"
 msgid "Starting conversion of "
-msgstr "Đang bắt đầu chuyển đổi"
+msgstr "Đang bắt đầu chuyển đổi "
 
 msgid "Success"
 msgstr "Thành công"
 
-#, fuzzy
-#| msgid "Target format:"
 msgid "Target format: "
-msgstr "Định dạng đầu ra:"
+msgstr "Định dạng đầu ra: "
 
 msgid "There is only PDF Converter.\n"
 msgstr "Chỉ có PDF Converter.\n"
