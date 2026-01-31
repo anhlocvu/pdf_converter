@@ -10,26 +10,35 @@ def extract_strings(scan_dir):
     pattern = re.compile(r'_\s*\((?P<quote>["\'])(?P<string>.*?)(?P=quote)\)')
     str_list = set()
     
-    # Dirs to exclude
-    exclude_dirs = {'.git', '.venv', 'venv', 'env', '__pycache__', 'build', 'dist', 'locales', '.idea', '.vscode'}
+    # Specific paths to scan
+    scan_paths = ['main.py', 'modules']
     
-    for root, dirs, files in os.walk(scan_dir):
-        # Modify dirs in-place to skip excluded ones
-        dirs[:] = [d for d in dirs if d not in exclude_dirs]
-        
-        for file in files:
-            if file.endswith(".py") and file != "tools_i18n.py":
-                path = os.path.join(root, file)
-                try:
-                    with open(path, 'r', encoding='utf-8') as f:
-                        content = f.read()
-                        matches = pattern.findall(content)
-                        for _, s in matches:
-                            str_list.add(s)
-                except Exception as e:
-                    print(f"Skipping {path}: {e}")
-                    
+    for path in scan_paths:
+        if os.path.isfile(path):
+            files_to_scan = [path]
+        elif os.path.isdir(path):
+            files_to_scan = []
+            for root, _, files in os.walk(path):
+                for file in files:
+                    if file.endswith(".py"):
+                        files_to_scan.append(os.path.join(root, file))
+        else:
+            print(f"Warning: path not found: {path}")
+            continue
+            
+        for file_path in files_to_scan:
+             try:
+                with open(file_path, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    matches = pattern.findall(content)
+                    for _, s in matches:
+                        str_list.add(s)
+             except Exception as e:
+                print(f"Skipping {file_path}: {e}")
+
     return sorted(list(str_list))
+
+# ... (keep write_pot and msgfmt functions as they are useful library functions) ...
 
 def write_pot(strings, output_file):
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -189,13 +198,15 @@ def msgfmt(po_file, mo_file):
     print(f"Compiled {po_file} -> {mo_file}")
 
 if __name__ == "__main__":
-    # Generate POT
-    extract_strings(".") # Current dir
-    if os.path.exists("locales"):
-        write_pot(extract_strings("."), "locales/messages.pot")
+    # Generate POT only
+    print("Scanning code for translatable strings...")
+    strings = extract_strings(".")
     
-    # Compile example VI if exists
-    vi_po = "locales/vi/LC_MESSAGES/messages.po"
-    vi_mo = "locales/vi/LC_MESSAGES/messages.mo"
-    if os.path.exists(vi_po):
-        msgfmt(vi_po, vi_mo)
+    if not os.path.exists("locales"):
+        os.makedirs("locales")
+        
+    output_pot = "locales/messages.pot"
+    write_pot(strings, output_pot)
+    
+    print(f"Done. Template saved to {output_pot}")
+    print("You can now open this file with Poedit to update your translations.")
